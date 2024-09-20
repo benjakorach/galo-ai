@@ -183,7 +183,7 @@ function WhatsAppMessages() {
     }
 
     typeMessage()
-  }, [currentConversation, currentMessage])
+  }, [conversations]); // {{ edit_1 }}
 
   return (
     <div className="space-y-2">
