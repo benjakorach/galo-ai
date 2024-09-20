@@ -1,5 +1,3 @@
-'use client'
-
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,7 +5,22 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 
-export function HomePageComponent() {
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
+      <Header />
+      <main>
+        <HeroSection />
+        <FeaturesSection />
+        <WhatsAppDemoSection />
+        <TestimonialsSection />
+      </main>
+      <Footer />
+    </div>
+  )
+}
+
+function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -19,33 +32,22 @@ export function HomePageComponent() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-      <header className={`fixed w-full z-10 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold">
-            Logo
-          </Link>
-          <nav>
-            <ul className="flex space-x-6">
-              <li><Link href="#features" className="hover:text-blue-600 transition-colors">Features</Link></li>
-              <li><Link href="#whatsapp-demo" className="hover:text-blue-600 transition-colors">WhatsApp Demo</Link></li>
-              <li><Link href="#testimonials" className="hover:text-blue-600 transition-colors">Testimonials</Link></li>
-              <li><Link href="#contact" className="hover:text-blue-600 transition-colors">Contact</Link></li>
-            </ul>
-          </nav>
-          <Button>Get Started</Button>
-        </div>
-      </header>
-
-      <main>
-        <HeroSection />
-        <FeaturesSection />
-        <WhatsAppDemoSection />
-        <TestimonialsSection />
-      </main>
-
-      <Footer />
-    </div>
+    <header className={`fixed w-full z-10 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <Link href="/" className="text-2xl font-bold">
+          Logo
+        </Link>
+        <nav>
+          <ul className="flex space-x-6">
+            <li><Link href="#features" className="hover:text-blue-600 transition-colors">Features</Link></li>
+            <li><Link href="#whatsapp-demo" className="hover:text-blue-600 transition-colors">WhatsApp Demo</Link></li>
+            <li><Link href="#testimonials" className="hover:text-blue-600 transition-colors">Testimonials</Link></li>
+            <li><Link href="#contact" className="hover:text-blue-600 transition-colors">Contact</Link></li>
+          </ul>
+        </nav>
+        <Button>Get Started</Button>
+      </div>
+    </header>
   )
 }
 
@@ -69,7 +71,7 @@ function HeroSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Image src="/GaloAI.jpg" width={600} height={400} alt="Hero Image" className="rounded-lg shadow-xl" />
+          <Image src="/placeholder.svg" width={600} height={400} alt="Hero Image" className="rounded-lg shadow-xl" />
         </motion.div>
       </div>
     </section>
@@ -183,7 +185,7 @@ function WhatsAppMessages() {
     }
 
     typeMessage()
-  }, [conversations, currentConversation, currentMessage]); // {{ edit_1 }}
+  }, [currentConversation, currentMessage])
 
   return (
     <div className="space-y-2">
@@ -239,7 +241,7 @@ function TestimonialsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="p-6">
-                <p className="mb-4 italic">"{testimonial.quote}"</p>
+                <p className="mb-4 italic">&quot;{testimonial.quote}&quot;</p>
                 <p className="font-semibold">{testimonial.name}</p>
                 <p className="text-sm text-gray-600">{testimonial.role}</p>
               </Card>
@@ -258,7 +260,7 @@ function Footer() {
         <div className="grid md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-semibold mb-4">About Us</h3>
-            <p>We're dedicated to providing innovative solutions that transform how businesses operate.</p>
+            <p>We&apos;re dedicated to providing innovative solutions that transform how businesses operate.</p>
           </div>
           <div>
             <h3 className="text-xl font-semibold mb-4">Contact</h3>
